@@ -1,0 +1,13 @@
+<odoo>
+    <data noupdate="1">
+
+        <!-- Register BaaSey Webhook Endpoint -->
+        <record id="baasey_webhook_route" model="ir.http">
+            <field name="name">BaaSey Webhook</field>
+            <field name="auth">public</field>
+            <field name="type">json</field>
+            <field name="routing">/baasey/webhook</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,64 @@
+<odoo>
+    <!-- Settlement Dashboard Menu -->
+    <menuitem id="menu_baasey_root"
+              name="BaaSey Settlements"
+              parent="sale.sale_order_menu"
+              sequence="90"/>
+
+    <!-- Submenus -->
+    <menuitem id="menu_baasey_unsettled"
+              name="Unsettled Orders"
+              parent="menu_baasey_root"
+              action="action_baasey_unsettled_orders"/>
+
+    <menuitem id="menu_baasey_settled"
+              name="Settled Orders"
+              parent="menu_baasey_root"
+              action="action_baasey_settled_orders"/>
+
+    <!-- Tree View for Unsettled Orders -->
+    <record id="view_baasey_unsettled_tree" model="ir.ui.view">
+        <field name="name">baasey.unsettled.orders</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="amount_total"/>
+                <field name="baasey_virtual_account"/>
+                <field name="baasey_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for Unsettled Orders -->
+    <record id="action_baasey_unsettled_orders" model="ir.actions.act_window">
+        <field name="name">Unsettled Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('baasey_status','=','unsettled')]</field>
+    </record>
+
+    <!-- Tree View for Settled Orders -->
+    <record id="view_baasey_settled_tree" model="ir.ui.view">
+        <field name="name">baasey.settled.orders</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="amount_total"/>
+                <field name="baasey_virtual_account"/>
+                <field name="baasey_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for Settled Orders -->
+    <record id="action_baasey_settled_orders" model="ir.actions.act_window">
+        <field name="name">Settled Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('baasey_status','=','settled')]</field>
+    </record>
+</odoo>

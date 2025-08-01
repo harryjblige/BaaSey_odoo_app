@@ -1,0 +1,29 @@
+<odoo>
+    <!-- Extend the Sales Order Form -->
+    <record id="view_order_form_inherit_baasey" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.baasey</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            
+            <!-- Add new fields to show BaaSey details -->
+            <sheet position="inside">
+                <group string="BaaSey Settlement">
+                    <field name="baasey_reference" readonly="1"/>
+                    <field name="baasey_virtual_account" readonly="1"/>
+                    <field name="baasey_status" readonly="1"/>
+                </group>
+            </sheet>
+
+            <!-- Add a button in the header -->
+            <header position="inside">
+                <button name="action_generate_baasey_link"
+                        type="object"
+                        string="Generate BaaSey Payment Link"
+                        class="btn-primary"
+                        attrs="{'invisible': [('baasey_virtual_account','!=',False)]}"/>
+            </header>
+
+        </field>
+    </record>
+</odoo>
